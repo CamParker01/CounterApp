@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Minus from "./CountDown"
+import Plus from "./CountUp"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+    state = {
+      count: 0
+    
+  }
+
+  customInput = (number) =>{
+    let value = parseInt(number)
+    this.setState({
+      count: this.state.count + value
+    })
+      
+  }
+
+      countUp = () => {
+      this.setState({
+        count: this.state.count + 1
+      })
+  }
+
+  countDown=() =>{
+    this.setState(
+      {count: this.state.count -1}
+    )
+  }
+
+  
+  render() {
+    return(
+      <div>
+        <div>{this.state.count}</div>
+        <Plus countUp = {this.countUp} />
+        <Minus countDown = {this.countDown} />
+
+       
+      </div>
+    )
+  }
 }
-
-export default App;
+export default App
